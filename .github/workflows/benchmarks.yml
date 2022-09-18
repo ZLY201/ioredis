@@ -30,4 +30,4 @@ jobs:
       - run: ts-node benchmarks/fixtures/generate.ts
       - run: ts-node benchmarks/fixtures/insert.ts
       - run: cd benchmarks && ls -a
-      - run: cd fixtures && ls -a
+      - run: cd benchmarks/fixtures && ls -a
