@@ -25,6 +25,7 @@ jobs:
         with:
           redis-version: ${{ matrix.redis }}
 
-      - run: npm install && npm i cronometro ts-node
+      - run: npm install
+      - run: npm i cronometro ts-node -g
       - run: ts-node benchmarks/fixtures/generate.ts
       - run: ts-node benchmarks/fixtures/insert.ts
