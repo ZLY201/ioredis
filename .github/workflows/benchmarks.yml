@@ -29,4 +29,5 @@ jobs:
       - run: npm i cronometro ts-node -g
       - run: ts-node benchmarks/fixtures/generate.ts
       - run: ts-node benchmarks/fixtures/insert.ts
-      - run: ls -a
+      - run: cd benchmarks && ls -a
+      - run: cd fixtures && ls -a
