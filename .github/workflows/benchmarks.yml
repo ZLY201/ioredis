@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - test/migrate-deque
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [16.x]
+        redis: ['2', '6']
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.4.0
+        with:
+          redis-version: ${{ matrix.redis }}
+
+      - run: npm install && npm i cronometro ts-node
+      - run: ts-node benchmarks/fixtures/generate.ts
+      - run: ts-node benchmarks/fixtures/insert.ts
